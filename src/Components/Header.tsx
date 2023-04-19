@@ -1,6 +1,6 @@
 export default function Header() {
     return (
-        <header className="flex flex-col items-center justify-center bg-green-600 h-20 drop-shadow-md">
+        <header className="flex flex-col items-center justify-center bg-green-600 h-20 drop-shadow-md w-screen">
             <div>
                 <h1 className="text-4xl font-bold text-white ">BadalaFit</h1>
 
