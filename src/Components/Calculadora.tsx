@@ -1,42 +1,71 @@
 import { useState } from "react"
 import Result from "./Result"
+import { ToastContainer, toast } from "react-toastify"
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Calculadora() {
 
   const [gender, setGender] = useState('')
-  const [weight, setWeight] = useState<number | string>()
-  const [height, setHeight] = useState<number | string>()
-  const [age, setAge] = useState<number | string>()
+  const [weight, setWeight] = useState<number | string>('')
+  const [height, setHeight] = useState<number | string>('')
+  const [age, setAge] = useState<number | string>('')
   const [activity, setActivity] = useState<number | string>("1.2")
   const [result, setResult] = useState<number>()
-  const [seeResult, setSeeResult] = useState<string>("hidden")
+
+  // const [seeButton, setSeeButton] = useState()
+
 
   function verifyData() {
-
+    if (gender === '') {
+      toastWarn('Selecione o seu gênero')
+      return
+    }
+    if (weight === '') {
+      toastWarn('Preencha seu peso em KG')
+      return
+    }
+    if (height === '') {
+      toastWarn('Preencha sua altura em CM')
+      return
+    }
+    if (age === '') {
+      toastWarn('Preencha sua idade')
+      return
+    }
+    handleCalcBasal()
   }
 
   function handleCalcBasal() {
     if (gender === 'H') {
       const menBasal = Math.round(Number(activity) * (66 + (13.7 * Number(weight)) + (5 * Number(height)) - (6.8 * Number(age))))
       setResult(menBasal)
-      setSeeResult("flex flex-col items-center justify-center h-auto gap-1 bg-emerald-500 p-9 mx-10 rounded-lg w-4/5")
       return
     }
     if (gender === "M") {
       const womenBasal = Math.round(Number(activity) * (655 + (9.6 * Number(weight)) + (1.8 * Number(height)) - (4.7 * Number(age))))
       setResult(womenBasal)
-      setSeeResult("flex flex-col items-center justify-center h-auto gap-1 bg-emerald-500 p-9 mx-10 rounded-lg w-4/5")
       return
     }
   }
 
+  const toastWarn = (message: string) => toast.warn(message, {
+    position: "bottom-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+
   return (
 
-    <div className="flex flex-col gap-4 w4/5">
+    <div className="flex flex-col gap-4 w-96 items-center">
 
-      <div className="flex flex-col items-center justify-center h-auto gap-1 bg-emerald-200 p-9 px-16 mx-10 rounded-lg ">
+      <div className="flex flex-col items-center justify-center h-auto gap-1 bg-emerald-200 mx-10 rounded-lg min-w-full py-4">
 
-        <div className="w-48 flex flex-col items-center">
+        <div className="flex flex-col items-center">
           <h1 className="font-semibold">Selecione o gênero</h1>
           <div className="flex gap-2">
             <div className="flex items-center gap-2">
@@ -83,12 +112,29 @@ export default function Calculadora() {
           </select>
         </div>
 
-        <button className="bg-orange-700 w-48 h-10 rounded-lg mt-4 text-white font-semibold" onClick={handleCalcBasal}>
+        <button className="bg-orange-700 w-48 h-10 rounded-lg mt-4 text-white font-semibold hover:scale-110 ease-in-out duration-500 hover:bg-orange-500" onClick={verifyData}>
           Calcular
         </button>
       </div>
 
-      <Result result={result} seeResult={seeResult} />
+
+      {result && (
+        <Result result={result} />
+      )}
+
+      <ToastContainer
+        position="bottom-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+
     </div>
   )
 }

@@ -4,15 +4,14 @@ import Header from "@/Components/Header"
 export default function Home() {
 
   return (
-    <>
+    <div className="bg-gray-200 h-screen">
 
       <Header />
-
       <main className="flex items-center justify-center mt-40">
         <Calculadora />
       </main>
 
-    </>
+    </div>
 
   )
 }
