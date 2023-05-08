@@ -97,7 +97,7 @@ export default function Calculadora() {
         <div>
           <h1>Idade</h1>
           <div>
-            <input type="number" placeholder="Prenncha sua idade" className="h-10 rounded-md text-center w-48" value={age} onChange={(e) => setAge(e.target.value)} />
+            <input type="number" placeholder="Preencha sua idade" className="h-10 rounded-md text-center w-48" value={age} onChange={(e) => setAge(e.target.value)} />
           </div>
         </div>
 
