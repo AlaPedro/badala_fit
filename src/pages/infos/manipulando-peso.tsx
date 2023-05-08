@@ -1,4 +1,4 @@
-import Header from "@/components/Header"
+import Header from "@/Components/Header"
 import Link from "next/link"
 export default function ManipulandoPeso() {
     return (

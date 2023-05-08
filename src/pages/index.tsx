@@ -1,5 +1,5 @@
-import Calculadora from "@/components/Calculadora"
-import Header from "@/components/Header"
+import Calculadora from "@/Components/Calculadora"
+import Header from "@/Components/Header"
 
 export default function Home() {
 
