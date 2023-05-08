@@ -48,7 +48,7 @@ export default function Result({ result }: Props) {
             </div>
 
             {modalIsOpen && (
-                <div className="absolute top-0 left-0 w-full h-full bg-black/80">
+                <div className="fixed inset-0 z-50 overflow-y-auto backdrop-blur-sm">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
 
                         <div className="flex flex-col gap-4 w-96 items-center">
